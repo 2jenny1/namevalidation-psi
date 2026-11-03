@@ -2,7 +2,7 @@
   "name": "namevalidation-psi",
   "private": true,
   "scripts": {
-    "build": "react-router build",
+    "build": "prisma generate && react-router build",
     "dev": "shopify app dev",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
@@ -21,10 +21,10 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=22.12"
+    "node": "22.x"
   },
   "dependencies": {
-    "@prisma/client": "^6.19.0",
+    "@prisma/client": "6.19.0",
     "@react-router/dev": "7.18.2",
     "@react-router/fs-routes": "7.18.2",
     "@react-router/node": "7.18.2",
@@ -33,7 +33,7 @@
     "@shopify/shopify-app-react-router": "^3.0.1",
     "@shopify/shopify-app-session-storage-prisma": "^11.0.0",
     "isbot": "^5.1.31",
-    "prisma": "^6.19.0",
+    "prisma": "6.19.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "7.18.2",
@@ -69,7 +69,9 @@
   ],
   "overrides": {
     "p-map": "^4.0.0",
-    "qs": "^6.16.0"
+    "qs": "^6.16.0",
+    "@prisma/client": "6.19.0",
+    "prisma": "6.19.0"
   },
   "resolutions": {
     "qs": "^6.16.0"
