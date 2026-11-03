@@ -1,0 +1,146 @@
+{% comment %}
+  Add this app block to the /pages/profile page template.
+  Shows the verify popup only when the customer is logged in and has no first name.
+{% endcomment %}
+
+{% if customer == nil %}
+  <script>
+    window.location.href = '/account/login?return_url={{ '/pages/profile' | url_encode }}';
+  </script>
+{% elsif customer.first_name == blank %}
+  <div
+    id="nv-psi-overlay"
+    class="nv-psi"
+    data-proxy-url="/apps/name-validation/verify"
+  >
+    <div class="nv-psi__backdrop" aria-hidden="true"></div>
+    <div
+      class="nv-psi__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="nv-psi-title"
+    >
+      <div class="nv-psi__brand">
+        {% if settings.logo != blank %}
+          {{
+            settings.logo
+            | image_url: width: 240
+            | image_tag: class: 'nv-psi__logo', alt: shop.name
+          }}
+        {% else %}
+          <p class="nv-psi__shop-name">{{ shop.name }}</p>
+        {% endif %}
+      </div>
+
+      <h2 id="nv-psi-title" class="nv-psi__title">Verify your information</h2>
+      <p class="nv-psi__subtitle">
+        Before you continue, please confirm your information. This is required to
+        verify your eligibility to purchase age-restricted products.
+      </p>
+
+      <form id="nv-psi-form" class="nv-psi__form" novalidate>
+        <div class="nv-psi__row">
+          <label class="nv-psi__field">
+            <span>First name</span>
+            <input type="text" name="firstName" required autocomplete="given-name">
+          </label>
+          <label class="nv-psi__field">
+            <span>Last name</span>
+            <input
+              type="text"
+              name="lastName"
+              required
+              autocomplete="family-name"
+              value="{{ customer.last_name | escape }}"
+            >
+          </label>
+        </div>
+
+        <fieldset class="nv-psi__dob">
+          <legend>Date of birth</legend>
+          <div class="nv-psi__row nv-psi__row--dob">
+            <label class="nv-psi__field">
+              <span>Day</span>
+              <input type="text" name="day" inputmode="numeric" maxlength="2" required placeholder="DD">
+            </label>
+            <label class="nv-psi__field">
+              <span>Month</span>
+              <input type="text" name="month" inputmode="numeric" maxlength="2" required placeholder="MM">
+            </label>
+            <label class="nv-psi__field">
+              <span>Year</span>
+              <input type="text" name="year" inputmode="numeric" maxlength="4" required placeholder="YYYY">
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="nv-psi__field nv-psi__field--full">
+          <span>Province</span>
+          <select name="province" id="nv-psi-province" required>
+            <option value="">Select province</option>
+            <option value="Alberta">Alberta (18+)</option>
+            <option value="British Columbia">British Columbia (19+)</option>
+            <option value="Manitoba">Manitoba (18+)</option>
+            <option value="New Brunswick">New Brunswick (19+)</option>
+            <option value="Newfoundland and Labrador">Newfoundland and Labrador (19+)</option>
+            <option value="Northwest Territories">Northwest Territories (19+)</option>
+            <option value="Nova Scotia">Nova Scotia (19+)</option>
+            <option value="Nunavut">Nunavut (19+)</option>
+            <option value="Ontario">Ontario (19+)</option>
+            <option value="Prince Edward Island">Prince Edward Island (19+)</option>
+            <option value="Quebec">Quebec (18+)</option>
+            <option value="Saskatchewan">Saskatchewan (19+)</option>
+            <option value="Yukon">Yukon (19+)</option>
+          </select>
+        </label>
+
+        <label class="nv-psi__check">
+          <input type="checkbox" name="confirmAccuracy" required>
+          <span>I confirm that the information provided is accurate.</span>
+        </label>
+
+        <label class="nv-psi__check">
+          <input type="checkbox" name="agreeLegal" required>
+          <span>
+            I agree to the
+            {% if block.settings.terms_url != blank %}
+              <a href="{{ block.settings.terms_url }}" target="_blank" rel="noopener">Terms of Service</a>
+            {% else %}
+              <a href="/policies/terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+            {% endif %}
+            and
+            {% if block.settings.privacy_url != blank %}
+              <a href="{{ block.settings.privacy_url }}" target="_blank" rel="noopener">Privacy Policy</a>
+            {% else %}
+              <a href="/policies/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+            {% endif %}.
+          </span>
+        </label>
+
+        <p id="nv-psi-error" class="nv-psi__error" hidden></p>
+        <button type="submit" class="nv-psi__submit" id="nv-psi-submit">Continue</button>
+      </form>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Verify profile popup",
+  "target": "section",
+  "stylesheet": "name-validation.css",
+  "javascript": "name-validation.js",
+  "settings": [
+    {
+      "type": "url",
+      "id": "terms_url",
+      "label": "Terms of Service URL"
+    },
+    {
+      "type": "url",
+      "id": "privacy_url",
+      "label": "Privacy Policy URL"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "b316035a06db9244660f0714fd455fca"
+application_url = "https://example.com"
+embedded = true
+name = "Name Validation PSI"
+
+[webhooks]
+api_version = "2027-01"
+
+[access_scopes]
+# Admin + Customer Account API scopes for name / metafield updates
+# write_app_proxy required so /apps/name-validation/* can reach the app
+scopes = "read_customers,write_customers,customer_read_customers,customer_write_customers,write_app_proxy"
+
+[auth]
+redirect_urls = [ "https://example.com/api/auth" ]
+
+[build]
+automatically_update_urls_on_dev = true
+
+# Storefront path must match the app route (React Router has no URL rewrite).
+# /apps/name-validation/verify → app/routes/apps.name-validation.verify.tsx
+[app_proxy]
+url = "/apps/name-validation"
+prefix = "apps"
+subpath = "name-validation"
+
+# App-owned customer metafields writable from Customer Account UI extensions
+[customer.metafields.app.date_of_birth]
+type = "date"
+name = "Date of birth"
+description = "Customer date of birth collected during age verification"
+access.admin = "merchant_read"
+access.customer_account = "read_write"
+
+[customer.metafields.app.province]
+type = "single_line_text_field"
+name = "Province"
+description = "Canadian province used for age-restricted purchase eligibility"
+access.admin = "merchant_read"
+access.customer_account = "read_write"

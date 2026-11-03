@@ -1,0 +1,7 @@
+api_version = "2026-10"
+
+[[extensions]]
+uid = "b7e2f9a1-4c3d-4e8f-9a12-6d5c8b0e1f23nvth"
+type = "theme"
+name = "Name Validation Theme"
+handle = "name-validation-theme"

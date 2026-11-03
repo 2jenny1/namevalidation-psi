@@ -1,0 +1,25 @@
+api_version = "2026-10"
+
+[[extensions]]
+name = "Name Validation Profile"
+handle = "name-validation-account"
+type = "ui_extension"
+uid = "a1b2c3d4-e5f6-7890-abcd-ef1234567890nvac"
+
+[[extensions.targeting]]
+module = "./src/ProfileBlock.jsx"
+target = "customer-account.profile.block.render"
+
+[extensions.capabilities]
+api_access = true
+
+[extensions.settings]
+[[extensions.settings.fields]]
+key = "terms_url"
+type = "single_line_text_field"
+name = "Terms of Service URL"
+
+[[extensions.settings.fields]]
+key = "privacy_url"
+type = "single_line_text_field"
+name = "Privacy Policy URL"

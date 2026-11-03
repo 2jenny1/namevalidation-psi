@@ -1,0 +1,7 @@
+{
+  "name": "Name validation gate",
+  "settings": {
+    "terms_url": "Terms of Service URL",
+    "privacy_url": "Privacy Policy URL"
+  }
+}

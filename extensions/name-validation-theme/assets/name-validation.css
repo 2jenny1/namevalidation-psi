@@ -1,0 +1,188 @@
+.nv-psi,
+.nv-psi * {
+  box-sizing: border-box !important;
+}
+
+.nv-psi {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px !important;
+  margin: 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+.nv-psi[hidden] {
+  display: none !important;
+}
+
+.nv-psi__backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.62) !important;
+}
+
+.nv-psi__dialog {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  max-height: calc(100vh - 48px) !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+  color: #111 !important;
+  border-radius: 16px !important;
+  padding: 28px 24px 24px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35) !important;
+}
+
+.nv-psi__brand {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 0 0 16px !important;
+}
+
+.nv-psi__logo {
+  max-width: 160px !important;
+  max-height: 48px !important;
+  height: auto !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+.nv-psi__shop-name {
+  margin: 0 !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+}
+
+.nv-psi__title {
+  margin: 0 0 8px !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+.nv-psi__subtitle {
+  margin: 0 0 22px !important;
+  color: #6b6b6b !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+}
+
+.nv-psi__form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.nv-psi__row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  align-items: start !important;
+}
+
+.nv-psi__row--dob {
+  grid-template-columns: 1fr 1fr 1.25fr !important;
+  gap: 10px !important;
+}
+
+.nv-psi__field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.nv-psi__field input,
+.nv-psi__field select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  margin: 0 !important;
+  padding: 10px 12px !important;
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  color: #111 !important;
+  font-size: 15px !important;
+  box-shadow: none !important;
+}
+
+.nv-psi__dob {
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nv-psi__dob legend {
+  padding: 0 !important;
+  margin: 0 0 6px !important;
+  font-size: 13px !important;
+  color: #333 !important;
+}
+
+.nv-psi__check {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+  font-size: 14px !important;
+  color: #222 !important;
+}
+
+.nv-psi__check input[type="checkbox"] {
+  appearance: checkbox !important;
+  -webkit-appearance: checkbox !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  margin: 2px 0 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  accent-color: #111 !important;
+}
+
+.nv-psi__check a {
+  color: #1a5cff !important;
+}
+
+.nv-psi__error {
+  margin: 0 !important;
+  color: #c00 !important;
+  font-size: 13px !important;
+}
+
+.nv-psi__submit {
+  width: 100% !important;
+  min-height: 48px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  padding: 14px 16px !important;
+  background: #111 !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+.nv-psi__submit:disabled {
+  opacity: 0.65 !important;
+  cursor: wait !important;
+}
+
+@media (max-width: 480px) {
+  .nv-psi__row,
+  .nv-psi__row--dob {
+    grid-template-columns: 1fr !important;
+  }
+}
