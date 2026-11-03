@@ -21,14 +21,17 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (!loggedInCustomerId) {
     return Response.json(
-      { error: "Customer must be logged in." },
+      { error: "Customer must be logged in on the storefront." },
       { status: 401 },
     );
   }
 
   if (!admin || !session) {
     return Response.json(
-      { error: "App is not installed on this shop." },
+      {
+        error:
+          "No shop session on the server. Open Name Validation PSI once in Shopify Admin for this store, then retry.",
+      },
       { status: 401 },
     );
   }

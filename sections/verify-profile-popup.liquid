@@ -520,15 +520,21 @@
           })
           .then(function (result) {
             if (!result.ok) {
-              throw new Error(
-                (result.payload && result.payload.error) ||
-                  'Could not save. Keep shopify app dev running, then retry.',
-              );
+              var raw = result.payload && result.payload.error;
+              var message =
+                typeof raw === 'string'
+                  ? raw
+                  : raw
+                    ? JSON.stringify(raw)
+                    : 'Could not save (HTTP ' + result.status + ').';
+              throw new Error(message);
             }
             window.location.assign(ACCOUNT_PROFILE_URL);
           })
           .catch(function (err) {
-            showError(err.message || 'Could not save. Please try again.');
+            showError(
+              (err && err.message) || 'Could not save. Please try again.',
+            );
             submitBtn.disabled = false;
             submitBtn.textContent = 'Continue';
           });

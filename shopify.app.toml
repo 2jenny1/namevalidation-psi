@@ -1,7 +1,8 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "b316035a06db9244660f0714fd455fca"
-application_url = "https://example.com"
+application_url = "https://namevalidation-psi-ftzv-pacific-smoke.vercel.app"
+
 embedded = true
 name = "Name Validation PSI"
 
@@ -13,8 +14,10 @@ api_version = "2027-01"
 # write_app_proxy required so /apps/name-validation/* can reach the app
 scopes = "read_customers,write_customers,customer_read_customers,customer_write_customers,write_app_proxy"
 
+
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://namevalidation-psi-ftzv-pacific-smoke.vercel.app/auth/callback" ]
+
 
 [build]
 automatically_update_urls_on_dev = true
